@@ -79,7 +79,7 @@ def make_env(env_id, env_type, args, mpi_rank=0, subrank=0, seed=None, reward_sc
         env = HierarchicalRMWrapper(env, args.r_min, args.r_max, args.use_self_loops, args.use_rs, args.gamma, args.rs_gamma)
 
     if args.use_rs or args.use_crm:
-        env = RewardMachineWrapper(env, args.use_crm, args.use_rs, args.gamma, args.rs_gamma)
+        env = RewardMachineWrapper(env, args.use_crm, args.use_rs, args.gamma, args.rs_gamma, args.alg)
 
     if flatten_dict_observations and isinstance(env.observation_space, gym.spaces.Dict):
         env = FlattenObservation(env)

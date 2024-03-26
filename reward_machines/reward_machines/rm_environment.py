@@ -101,7 +101,7 @@ class RewardMachineEnv(gym.Wrapper):
 
 
 class RewardMachineWrapper(gym.Wrapper):
-    def __init__(self, env, add_crm, add_rs, gamma, rs_gamma):
+    def __init__(self, env, add_crm, add_rs, gamma, rs_gamma, algorithm):
         """
         RM wrapper
         --------------------
@@ -118,6 +118,7 @@ class RewardMachineWrapper(gym.Wrapper):
         super().__init__(env)
         self.add_crm = add_crm
         self.add_rs  = add_rs
+        self.algorithm = algorithm
         if add_rs:
             for rm in env.reward_machines:
                 rm.add_reward_shaping(gamma, rs_gamma)
@@ -136,7 +137,10 @@ class RewardMachineWrapper(gym.Wrapper):
         u_id  = self.env.current_u_id
 
         # executing the action in the environment
-        rm_obs, rm_rew, done, _, info = self.env.step(action)
+        if self.algorithm == "hrm":
+            rm_obs, rm_rew, done, info = self.env.step(action)
+        else:
+            rm_obs, rm_rew, done, _, info = self.env.step(action)
 
         # adding crm if needed
         if self.add_crm:
