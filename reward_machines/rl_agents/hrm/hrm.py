@@ -28,6 +28,7 @@ def learn(env,
           gamma=0.9,
           q_init=2.0,
           hrm_lr=0.1,
+          main_logger=None,
           use_rs=False,
           **others):
     """Train a tabular HRM method.
@@ -82,7 +83,7 @@ def learn(env,
 
             # Selecting and executing an action
             a = random.choice(actions) if random.random() < epsilon else get_best_action(Q_options,tuple(env.get_option_observation(option_id)),actions,q_init)
-            sn, r, done, info = env.step(a)
+            sn, r, done, _, info = env.step(a)
             sn = tuple(sn)
 
             # Saving the real reward that the option is getting
@@ -113,10 +114,10 @@ def learn(env,
             reward_total += r
             step += 1
             if step%print_freq == 0:
-                logger.record_tabular("steps", step)
-                logger.record_tabular("episodes", num_episodes)
-                logger.record_tabular("total reward", reward_total)
-                logger.dump_tabular()
+                main_logger.record("steps", step)
+                main_logger.record("episodes", num_episodes)
+                main_logger.record("total reward", reward_total)
+                main_logger.dump()
                 reward_total = 0
             if done:
                 num_episodes += 1
