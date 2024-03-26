@@ -136,7 +136,7 @@ class RewardMachineWrapper(gym.Wrapper):
         u_id  = self.env.current_u_id
 
         # executing the action in the environment
-        rm_obs, rm_rew, done, info = self.env.step(action)
+        rm_obs, rm_rew, done, _, info = self.env.step(action)
 
         # adding crm if needed
         if self.add_crm:
