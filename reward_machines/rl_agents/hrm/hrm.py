@@ -21,7 +21,7 @@ def get_best_action(Q,s,actions,q_init):
 def learn(env,
           network=None,
           seed=None,
-          lr=0.1,
+          lr=0.5,
           total_timesteps=100000,
           epsilon=0.1,
           print_freq=10000,
