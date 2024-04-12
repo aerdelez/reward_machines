@@ -179,9 +179,11 @@ def get_alg_module(alg, submodule=None):
     submodule = submodule or alg
     try:
         # first try to import the alg module from baselines
+        print("rl_agents!!!!!!")
         alg_module = import_module('.'.join([library, alg, submodule]))
     except ImportError:
         # then from rl_algs
+        print("baselines!!!")
         alg_module = import_module('.'.join(['baselines', alg, submodule]))
 
     return alg_module

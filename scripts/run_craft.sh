@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ../reward_machines
-for i in `seq 1 10`; 
+for i in `seq 2 10`; 
 do
 	for j in `seq 0 5`; 
 	do

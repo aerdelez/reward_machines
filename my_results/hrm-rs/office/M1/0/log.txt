@@ -1,1 +1,0 @@
-Logging to ../my_results/hrm-rs/office/M1/0
