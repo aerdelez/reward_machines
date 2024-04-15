@@ -20,6 +20,7 @@ from baselines_functionality.wrappers import ClipActionsWrapper
 
 from reward_machines.rm_environment import RewardMachineWrapper, HierarchicalRMWrapper
 
+# TODO: probably not used
 def make_vec_env(env_id, env_type, num_env, seed, args, 
                  wrapper_kwargs=None,
                  env_kwargs=None,
@@ -60,6 +61,7 @@ def make_vec_env(env_id, env_type, num_env, seed, args,
     else:
         return DummyVecEnv([make_thunk(i + start_index, initializer=None) for i in range(num_env)])
 
+# Create the environment
 def make_env(env_id, env_type, args, mpi_rank=0, subrank=0, seed=None, reward_scale=1.0, gamestate=None, flatten_dict_observations=True, wrapper_kwargs=None, env_kwargs=None, logger_dir=None, initializer=None):
     if initializer is not None:
         initializer(mpi_rank=mpi_rank, subrank=subrank)
@@ -81,6 +83,7 @@ def make_env(env_id, env_type, args, mpi_rank=0, subrank=0, seed=None, reward_sc
     if args.use_rs or args.use_crm:
         env = RewardMachineWrapper(env, args.use_crm, args.use_rs, args.gamma, args.rs_gamma, args.alg)
 
+    # TODO: look into this
     if flatten_dict_observations and isinstance(env.observation_space, gym.spaces.Dict):
         env = FlattenObservation(env)
 
@@ -90,6 +93,7 @@ def make_env(env_id, env_type, args, mpi_rank=0, subrank=0, seed=None, reward_sc
                   logger_dir and os.path.join(logger_dir, str(mpi_rank) + '.' + str(subrank)),
                   allow_early_resets=True)
 
+    # TODO: for continuous spaces I believe so I should remove it
     if isinstance(env.action_space, gym.spaces.Box):
         env = ClipActionsWrapper(env)
 

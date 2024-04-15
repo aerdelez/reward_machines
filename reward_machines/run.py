@@ -1,5 +1,6 @@
 import sys
 import re
+import time
 import multiprocessing
 import os
 import os.path as osp
@@ -52,6 +53,7 @@ _game_envs['retro'] = {
 }
 
 
+# TODO: Probably not needed
 def get_session(config=None):
     """Get default session or create one with a given config"""
     sess = tf.get_default_session()
@@ -59,6 +61,7 @@ def get_session(config=None):
         sess = make_session(config=config, make_default=True)
     return sess
 
+# TODO: Not needed if get_session not needed
 def make_session(config=None, num_cpu=None, make_default=False, graph=None):
     """Returns a session that will use <num_cpu> CPU's only"""
     if num_cpu is None:
@@ -75,6 +78,7 @@ def make_session(config=None, num_cpu=None, make_default=False, graph=None):
     else:
         return tf.Session(config=config, graph=graph)
 
+# Train a model
 def train(args, extra_args, main_logger=None):
     env_type, env_id = get_env_type(args)
     print('env_type: {}'.format(env_type))
@@ -82,14 +86,17 @@ def train(args, extra_args, main_logger=None):
     total_timesteps = int(args.num_timesteps)
     seed = args.seed
 
+    # Intepret given arguments
     learn = get_learn_function(args.alg)
     alg_kwargs = get_learn_function_defaults(args.alg, env_type)
     alg_kwargs.update(extra_args)
 
     env = build_env(args, main_logger)
+    # TODO: No video in my experiment so deprecated
     if args.save_video_interval != 0:
         env = VecVideoRecorder(env, osp.join(main_logger.get_dir(), "videos"), record_video_trigger=lambda x: x % args.save_video_interval == 0, video_length=args.save_video_length)
 
+    # TODO: Probably not used, remove it
     if args.network:
         alg_kwargs['network'] = args.network
     else:
@@ -115,9 +122,9 @@ def train(args, extra_args, main_logger=None):
 
 
 def build_env(args, main_logger=None):
-    ncpu = multiprocessing.cpu_count()
-    if sys.platform == 'darwin': ncpu //= 2
-    nenv = args.num_env or ncpu
+    num_of_cpus = multiprocessing.cpu_count()
+    if sys.platform == 'darwin': num_of_cpus //= 2
+    nenv = args.num_env or num_of_cpus
     alg = args.alg
     seed = args.seed
 
@@ -140,7 +147,7 @@ def build_env(args, main_logger=None):
 
     return env
 
-
+# Get the environment type from arguments
 def get_env_type(args):
     env_id = args.env
 
@@ -168,12 +175,14 @@ def get_env_type(args):
     return env_type, env_id
 
 
+# TODO: if network not used, remove it
 def get_default_network(env_type):
     if env_type in {'atari', 'retro'}:
         return 'cnn'
     else:
         return 'mlp'
 
+# Dynamically import appropriate algorithm
 def get_alg_module(alg, submodule=None):
     library = 'rl_agents'
     submodule = submodule or alg
@@ -181,20 +190,19 @@ def get_alg_module(alg, submodule=None):
 
     return alg_module
 
-
+# Return appropriate (pointer to) learn function
 def get_learn_function(alg):
     return get_alg_module(alg).learn
 
-
+# Access appropriate defaults.py to get hyperparameters for training session
 def get_learn_function_defaults(alg, env_type):
     try:
         alg_defaults = get_alg_module(alg, 'defaults')
         kwargs = getattr(alg_defaults, env_type)()
+    # except probably not ever used
     except (ImportError, AttributeError):
         kwargs = {}
     return kwargs
-
-
 
 def parse_unknown_args(args):
     """
@@ -233,6 +241,7 @@ def parse_cmdline_kwargs(args):
     return {k: parse(v) for k,v in parse_unknown_args(args).items()}
 
 
+# Configure the logger to keep track of progress
 def configure_logger(log_path, **kwargs):
     if log_path is not None:
         return logger.configure(log_path)
@@ -241,12 +250,12 @@ def configure_logger(log_path, **kwargs):
 
 
 def main(args):
-    # configure logger, disable logging in child MPI processes (with rank > 0)
-
+    # Parse the given arguments
     arg_parser = common_arg_parser()
     args, unknown_args = arg_parser.parse_known_args(args)
     extra_args = parse_cmdline_kwargs(unknown_args)
 
+    # else statement probably never used
     if MPI is None or MPI.COMM_WORLD.Get_rank() == 0:
         rank = 0
         main_logger = configure_logger(args.log_path)
@@ -254,12 +263,15 @@ def main(args):
         rank = MPI.COMM_WORLD.Get_rank()
         main_logger = configure_logger(args.log_path, format_strs=[])
 
+    # Train the model
     model, env = train(args, extra_args, main_logger)
 
+    # Save results to a given path
     if args.save_path is not None and rank == 0:
         save_path = osp.expanduser(args.save_path)
         model.save(save_path)
 
+    # probably useless for the project
     if args.play:
         main_logger.log("Running trained model")
         obs = env.reset()
@@ -283,6 +295,7 @@ def main(args):
                     print('episode_rew={}'.format(episode_rew[i]))
                     episode_rew[i] = 0
 
+    # Shut down the environment
     env.close()
 
     return model, main_logger
@@ -291,20 +304,19 @@ if __name__ == '__main__':
 
     # Examples over the office world:
     #    cross-product baseline: 
-    #        >>> python3.6 run.py --alg=qlearning --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 
+    #        >>> python3 run.py --alg=qlearning --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 
     #    cross-product baseline with reward shaping: 
-    #        >>> python3.6 run.py --alg=qlearning --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 --use_rs
+    #        >>> python3 run.py --alg=qlearning --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 --use_rs
     #    CRM: 
-    #        >>> python3.6 run.py --alg=qlearning --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 --use_crm
+    #        >>> python3 run.py --alg=qlearning --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 --use_crm
     #    CRM with reward shaping: 
-    #        >>> python3.6 run.py --alg=qlearning --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 --use_crm --use_rs
+    #        >>> python3 run.py --alg=qlearning --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 --use_crm --use_rs
     #    HRM: 
-    #        >>> python3.6 run.py --alg=hrm --env=Office-v0 --num_timesteps=1e5 --gamma=0.9
+    #        >>> python3 run.py --alg=hrm --env=Office-v0 --num_timesteps=1e5 --gamma=0.9
     #    HRM with reward shaping: 
-    #        >>> python3.6 run.py --alg=hrm --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 --use_rs
+    #        >>> python3 run.py --alg=hrm --env=Office-v0 --num_timesteps=1e5 --gamma=0.9 --use_rs
     # NOTE: The complete list of experiments (that we reported in the paper) can be found on '../scripts' 
 
-    import time
     t_init = time.time()
     _, main_logger = main(sys.argv)
     main_logger.log("Total time: " + str(time.time() - t_init) + " seconds")

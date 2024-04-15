@@ -65,7 +65,7 @@ def learn(env,
     num_episodes = 0
     reward_total = 0
     actions      = list(range(env.action_space.n))
-    Q_controller = {}   # Q-values for the meta-controller
+    Q_controller = {}   # Q-values for the meta-controller TODO: probably don't need it
     Q_options    = {}   # Q-values for the option policies
     option_s     = None # State where the option initiated
     option_id    = None # Id of the current option being executed
@@ -78,7 +78,7 @@ def learn(env,
                 valid_options = env.get_valid_options()
                 option_s    = s
                 add_state_if_needed(Q_controller,option_s,valid_options,q_init)
-                option_id   = random.choice(valid_options) if random.random() < epsilon else get_best_action(Q_controller,s,valid_options,q_init)
+                option_id = random.choice(valid_options) if random.random() < epsilon else get_best_action(Q_controller,s,valid_options,q_init)
                 option_rews = []
 
             # Selecting and executing an action
