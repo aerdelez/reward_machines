@@ -21,7 +21,7 @@ class RewardMachine:
             - gamma(float):    this is the gamma from the environment
             - rs_gamma(float): this gamma that is used in the value iteration that compute the shaping potentials
         """
-        self.gamma    = gamma
+        self.gamma = gamma
         self.potentials = value_iteration(self.U, self.delta_u, self.delta_r, self.terminal_u, rs_gamma)
         for u in self.potentials:
             self.potentials[u] = -self.potentials[u]
