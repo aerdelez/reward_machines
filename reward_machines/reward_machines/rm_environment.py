@@ -15,6 +15,7 @@ import gym
 from gym import spaces
 import numpy as np
 from reward_machines.reward_machine import RewardMachine
+import random
 
 
 class RewardMachineEnv(gym.Wrapper):
@@ -82,6 +83,15 @@ class RewardMachineEnv(gym.Wrapper):
 
         # getting the output of the detectors and saving information for generating counterfactual experiences
         true_props = self.env.get_events()
+        # Change event detectors for Office-grid environment
+        acceepted_probability = 70
+        if "Office" in str(self.env) and random.randint(1, 100) >= acceepted_probability:
+            if true_props is not "":
+                # Random selection
+                possible_props = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'n']
+                true_props = possible_props[random.randint(0, 7)]
+                
+            print("SUIIIIIII")
         self.crm_params = self.obs, action, next_obs, env_done, true_props, info
         self.obs = next_obs
 

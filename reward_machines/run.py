@@ -96,7 +96,6 @@ def train(args, extra_args, main_logger=None):
     if args.save_video_interval != 0:
         env = VecVideoRecorder(env, osp.join(main_logger.get_dir(), "videos"), record_video_trigger=lambda x: x % args.save_video_interval == 0, video_length=args.save_video_length)
 
-    # TODO: Probably not used, remove it
     if args.network:
         alg_kwargs['network'] = args.network
     else:
@@ -271,7 +270,7 @@ def main(args):
         save_path = osp.expanduser(args.save_path)
         model.save(save_path)
 
-    # probably useless for the project
+    # TODO: probably useless for the project
     if args.play:
         main_logger.log("Running trained model")
         obs = env.reset()
