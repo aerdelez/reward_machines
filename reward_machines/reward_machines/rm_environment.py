@@ -83,15 +83,17 @@ class RewardMachineEnv(gym.Wrapper):
 
         # getting the output of the detectors and saving information for generating counterfactual experiences
         true_props = self.env.get_events()
+
         # Change event detectors for Office-grid environment
-        acceepted_probability = 70
-        if "Office" in str(self.env) and random.randint(1, 100) >= acceepted_probability:
+        # ENTER NOISE PROBABILITY USING ONE ELEMENT FROM THIS LIST: [10,20,30,40,50,60,70,80,90]
+        accepted_probability = 90
+
+        if "Office" in str(self.env) and random.randint(0, 99) >= accepted_probability:
             if true_props is not "":
                 # Random selection
                 possible_props = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'n']
-                true_props = possible_props[random.randint(0, 7)]
+                true_props = possible_props[random.randint(0, len(possible_props) - 1)]
                 
-            print("SUIIIIIII")
         self.crm_params = self.obs, action, next_obs, env_done, true_props, info
         self.obs = next_obs
 

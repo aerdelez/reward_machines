@@ -1,0 +1,1 @@
+Logging to ../noise_results/40/hrm-rs/office/M1/34
