@@ -1,52 +1,52 @@
 Logging to ../noise_results/10/hrm-rs/office/M1/32
 ---------------------------
-| episodes     | 109      |
+| episodes     | 87       |
 | steps        | 10000    |
-| total reward | 9        |
+| total reward | 6        |
 ---------------------------
 ---------------------------
-| episodes     | 194      |
+| episodes     | 162      |
 | steps        | 20000    |
-| total reward | 24       |
+| total reward | 13       |
 ---------------------------
 ---------------------------
-| episodes     | 342      |
+| episodes     | 297      |
 | steps        | 30000    |
-| total reward | 49       |
+| total reward | 52       |
 ---------------------------
 ---------------------------
-| episodes     | 561      |
+| episodes     | 532      |
 | steps        | 40000    |
-| total reward | 107      |
+| total reward | 121      |
 ---------------------------
 ---------------------------
-| episodes     | 834      |
+| episodes     | 798      |
 | steps        | 50000    |
-| total reward | 149      |
+| total reward | 128      |
 ---------------------------
 ---------------------------
-| episodes     | 1178     |
+| episodes     | 1143     |
 | steps        | 60000    |
-| total reward | 184      |
+| total reward | 199      |
 ---------------------------
 ---------------------------
-| episodes     | 1544     |
+| episodes     | 1510     |
 | steps        | 70000    |
-| total reward | 210      |
+| total reward | 216      |
 ---------------------------
 ---------------------------
-| episodes     | 1872     |
+| episodes     | 1831     |
 | steps        | 80000    |
-| total reward | 186      |
+| total reward | 215      |
 ---------------------------
 ---------------------------
-| episodes     | 2255     |
+| episodes     | 2164     |
 | steps        | 90000    |
-| total reward | 287      |
+| total reward | 180      |
 ---------------------------
 ---------------------------
-| episodes     | 2634     |
+| episodes     | 2528     |
 | steps        | 100000   |
-| total reward | 264      |
+| total reward | 246      |
 ---------------------------
-Total time: 17.678186893463135 seconds
+Total time: 17.419217109680176 seconds

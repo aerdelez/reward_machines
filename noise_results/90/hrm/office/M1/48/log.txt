@@ -1,52 +1,52 @@
 Logging to ../noise_results/90/hrm/office/M1/48
 ---------------------------
-| episodes     | 177      |
+| episodes     | 125      |
 | steps        | 10000    |
-| total reward | 53       |
+| total reward | 26       |
 ---------------------------
 ---------------------------
-| episodes     | 378      |
+| episodes     | 420      |
 | steps        | 20000    |
-| total reward | 71       |
+| total reward | 187      |
 ---------------------------
 ---------------------------
-| episodes     | 610      |
+| episodes     | 808      |
 | steps        | 30000    |
-| total reward | 77       |
+| total reward | 289      |
 ---------------------------
 ---------------------------
-| episodes     | 838      |
+| episodes     | 1186     |
 | steps        | 40000    |
-| total reward | 74       |
+| total reward | 281      |
 ---------------------------
 ---------------------------
-| episodes     | 1054     |
+| episodes     | 1601     |
 | steps        | 50000    |
-| total reward | 74       |
+| total reward | 293      |
 ---------------------------
 ---------------------------
-| episodes     | 1251     |
+| episodes     | 2009     |
 | steps        | 60000    |
-| total reward | 74       |
+| total reward | 310      |
 ---------------------------
 ---------------------------
-| episodes     | 1498     |
+| episodes     | 2406     |
 | steps        | 70000    |
-| total reward | 88       |
+| total reward | 314      |
 ---------------------------
 ---------------------------
-| episodes     | 1743     |
+| episodes     | 2794     |
 | steps        | 80000    |
-| total reward | 80       |
+| total reward | 277      |
 ---------------------------
 ---------------------------
-| episodes     | 2011     |
+| episodes     | 3205     |
 | steps        | 90000    |
-| total reward | 97       |
+| total reward | 317      |
 ---------------------------
 ---------------------------
-| episodes     | 2231     |
+| episodes     | 3589     |
 | steps        | 100000   |
-| total reward | 77       |
+| total reward | 291      |
 ---------------------------
-Total time: 16.38435697555542 seconds
+Total time: 16.93622398376465 seconds

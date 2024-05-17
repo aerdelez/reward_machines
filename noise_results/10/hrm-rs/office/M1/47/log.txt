@@ -1,52 +1,52 @@
 Logging to ../noise_results/10/hrm-rs/office/M1/47
 ---------------------------
-| episodes     | 100      |
+| episodes     | 106      |
 | steps        | 10000    |
-| total reward | 8        |
+| total reward | 11       |
 ---------------------------
 ---------------------------
-| episodes     | 193      |
+| episodes     | 205      |
 | steps        | 20000    |
 | total reward | 21       |
 ---------------------------
 ---------------------------
-| episodes     | 321      |
+| episodes     | 370      |
 | steps        | 30000    |
-| total reward | 46       |
+| total reward | 63       |
 ---------------------------
 ---------------------------
-| episodes     | 572      |
+| episodes     | 576      |
 | steps        | 40000    |
-| total reward | 118      |
+| total reward | 87       |
 ---------------------------
 ---------------------------
-| episodes     | 867      |
+| episodes     | 861      |
 | steps        | 50000    |
-| total reward | 173      |
+| total reward | 159      |
 ---------------------------
 ---------------------------
-| episodes     | 1226     |
+| episodes     | 1233     |
 | steps        | 60000    |
-| total reward | 180      |
+| total reward | 218      |
 ---------------------------
 ---------------------------
-| episodes     | 1595     |
+| episodes     | 1558     |
 | steps        | 70000    |
-| total reward | 205      |
+| total reward | 209      |
 ---------------------------
 ---------------------------
-| episodes     | 1955     |
+| episodes     | 1944     |
 | steps        | 80000    |
-| total reward | 248      |
+| total reward | 260      |
 ---------------------------
 ---------------------------
-| episodes     | 2333     |
+| episodes     | 2341     |
 | steps        | 90000    |
-| total reward | 248      |
+| total reward | 270      |
 ---------------------------
 ---------------------------
-| episodes     | 2737     |
+| episodes     | 2724     |
 | steps        | 100000   |
-| total reward | 291      |
+| total reward | 262      |
 ---------------------------
-Total time: 17.656130075454712 seconds
+Total time: 17.29475212097168 seconds

@@ -1,52 +1,52 @@
 Logging to ../noise_results/10/hrm-rs/office/M1/9
 ---------------------------
-| episodes     | 91       |
+| episodes     | 109      |
 | steps        | 10000    |
-| total reward | 6        |
----------------------------
----------------------------
-| episodes     | 206      |
-| steps        | 20000    |
 | total reward | 16       |
 ---------------------------
 ---------------------------
-| episodes     | 334      |
+| episodes     | 208      |
+| steps        | 20000    |
+| total reward | 28       |
+---------------------------
+---------------------------
+| episodes     | 349      |
 | steps        | 30000    |
-| total reward | 50       |
+| total reward | 53       |
 ---------------------------
 ---------------------------
-| episodes     | 582      |
+| episodes     | 574      |
 | steps        | 40000    |
-| total reward | 106      |
+| total reward | 94       |
 ---------------------------
 ---------------------------
-| episodes     | 894      |
+| episodes     | 880      |
 | steps        | 50000    |
-| total reward | 174      |
+| total reward | 149      |
 ---------------------------
 ---------------------------
-| episodes     | 1232     |
+| episodes     | 1206     |
 | steps        | 60000    |
-| total reward | 210      |
+| total reward | 172      |
 ---------------------------
 ---------------------------
-| episodes     | 1568     |
+| episodes     | 1536     |
 | steps        | 70000    |
-| total reward | 224      |
+| total reward | 207      |
 ---------------------------
 ---------------------------
-| episodes     | 1923     |
+| episodes     | 1861     |
 | steps        | 80000    |
-| total reward | 235      |
+| total reward | 213      |
 ---------------------------
 ---------------------------
-| episodes     | 2338     |
+| episodes     | 2270     |
 | steps        | 90000    |
-| total reward | 274      |
+| total reward | 270      |
 ---------------------------
 ---------------------------
-| episodes     | 2718     |
+| episodes     | 2661     |
 | steps        | 100000   |
-| total reward | 272      |
+| total reward | 268      |
 ---------------------------
-Total time: 17.70412516593933 seconds
+Total time: 17.30627703666687 seconds

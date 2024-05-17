@@ -1,52 +1,52 @@
 Logging to ../noise_results/10/hrm-rs/office/M1/57
 ---------------------------
-| episodes     | 87       |
+| episodes     | 111      |
 | steps        | 10000    |
-| total reward | 3        |
+| total reward | 10       |
 ---------------------------
 ---------------------------
-| episodes     | 202      |
+| episodes     | 217      |
 | steps        | 20000    |
-| total reward | 18       |
+| total reward | 20       |
 ---------------------------
 ---------------------------
-| episodes     | 339      |
+| episodes     | 350      |
 | steps        | 30000    |
-| total reward | 47       |
+| total reward | 60       |
 ---------------------------
 ---------------------------
-| episodes     | 547      |
+| episodes     | 585      |
 | steps        | 40000    |
-| total reward | 102      |
+| total reward | 119      |
 ---------------------------
 ---------------------------
-| episodes     | 828      |
+| episodes     | 885      |
 | steps        | 50000    |
-| total reward | 142      |
+| total reward | 152      |
 ---------------------------
 ---------------------------
-| episodes     | 1157     |
+| episodes     | 1195     |
 | steps        | 60000    |
-| total reward | 188      |
+| total reward | 165      |
 ---------------------------
 ---------------------------
-| episodes     | 1505     |
+| episodes     | 1572     |
 | steps        | 70000    |
-| total reward | 211      |
----------------------------
----------------------------
-| episodes     | 1766     |
-| steps        | 80000    |
-| total reward | 127      |
----------------------------
----------------------------
-| episodes     | 2156     |
-| steps        | 90000    |
 | total reward | 253      |
 ---------------------------
 ---------------------------
-| episodes     | 2557     |
-| steps        | 100000   |
-| total reward | 285      |
+| episodes     | 1978     |
+| steps        | 80000    |
+| total reward | 241      |
 ---------------------------
-Total time: 17.575012683868408 seconds
+---------------------------
+| episodes     | 2365     |
+| steps        | 90000    |
+| total reward | 266      |
+---------------------------
+---------------------------
+| episodes     | 2790     |
+| steps        | 100000   |
+| total reward | 280      |
+---------------------------
+Total time: 17.257193088531494 seconds

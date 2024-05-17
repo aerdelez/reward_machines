@@ -49,54 +49,56 @@ def export_avg_results_grid(agent,env,maps,seeds):
         assert False, "Invalid environment!"
 
 
-    stats = [[] for _ in range(max_length)]
-    # Loop over each map of an environment
-    for env_map in maps:
-        # Loop 60 times
-        for seed in seeds:
-            # Reading the results -> format: list of [time, episode length, episode reward]
-            f_path = "../wrong_results/%s/%s/%s/%s/0.0.monitor.csv"%(agent,env,env_map,seed)
-            results = []
-            f = open(f_path)
-            for l in f:
-                raw = l.strip().split(',')
-                if len(raw) != 3 or raw[0]=='r':
-                    continue
-                episode_reward, episode_length, t = float(raw[0]), float(raw[1]), float(raw[2])
-                results.append((t, episode_length, episode_reward))
-            f.close()
+    #Loop over each noise model
+    for noise in range(10, 99, 10):
+        stats = [[] for _ in range(max_length)]
+        # Loop over each map of an environment
+        for env_map in maps:
+            # Loop 60 times
+            for seed in seeds:
+                # Reading the results -> format: list of [time, episode length, episode reward]
+                f_path = "../noise_results/%s/%s/%s/%s/%s/0.0.monitor.csv"%(noise, agent, env, env_map, seed)
+                results = []
+                f = open(f_path)
+                for l in f:
+                    raw = l.strip().split(',')
+                    if len(raw) != 3 or raw[0]=='r':
+                        continue
+                    episode_reward, episode_length, t = float(raw[0]), float(raw[1]), float(raw[2])
+                    results.append((t, episode_length, episode_reward))
+                f.close()
 
-            # collecting average stats
-            steps = 0
-            rewards = deque([], maxlen=num_episodes_avg)
-            steps_tic = num_total_steps / max_length
-            for i in range(len(results)):
-                _, episode_length, episode_reward = results[i]
-                rew_per_step = (episode_reward / episode_length) / optimal_rewards[env_map][i % len(optimal_rewards[env_map])]
-                if (steps + episode_length) % steps_tic == 0:
-                    steps += episode_length
-                    rewards.append(rew_per_step)
-                    stats[int((steps + episode_length) // steps_tic) - 1].append(sum(rewards) / len(rewards))
-                else:
-                    if (steps // steps_tic) != (steps + episode_length) // steps_tic:
-                        stat_id = int((steps + episode_length) // steps_tic) - 1
-                        # For some reason it would go over 100 by one
-                        if stat_id == 100:
-                            #stat_id -= 1
-                            continue
-                        stats[stat_id].append(sum(rewards) / len(rewards))
-                    steps += episode_length
-                    rewards.append(rew_per_step)
-                if (steps + episode_length) // steps_tic == max_length:
-                    break
+                # collecting average stats
+                steps = 0
+                rewards = deque([], maxlen=num_episodes_avg)
+                steps_tic = num_total_steps / max_length
+                for i in range(len(results)):
+                    _, episode_length, episode_reward = results[i]
+                    rew_per_step = (episode_reward / episode_length) / optimal_rewards[env_map][i % len(optimal_rewards[env_map])]
+                    if (steps + episode_length) % steps_tic == 0:
+                        steps += episode_length
+                        rewards.append(rew_per_step)
+                        stats[int((steps + episode_length) // steps_tic) - 1].append(sum(rewards) / len(rewards))
+                    else:
+                        if (steps // steps_tic) != (steps + episode_length) // steps_tic:
+                            stat_id = int((steps + episode_length) // steps_tic) - 1
+                            # For some reason it would go over 100 by one
+                            if stat_id == 100:
+                                #stat_id -= 1
+                                continue
+                            stats[stat_id].append(sum(rewards) / len(rewards))
+                        steps += episode_length
+                        rewards.append(rew_per_step)
+                    if (steps + episode_length) // steps_tic == max_length:
+                        break
 
-    # Saving the average performance and standard deviation
-    f_out = "../wrong_results/summary/%s-%s.txt"%(env,agent)
-    f = open(f_out, 'w')
-    for i in range(max_length):
-        if len(stats[i]) == len(seeds) * len(maps):
-            f.write("\t".join([str((i + 1) * steps_tic / 1000)] + get_precentiles_str(stats[i])) + "\n")
-    f.close()
+        # Saving the average performance and standard deviation
+        f_out = "../noise_results/%s/summary/%s-%s.txt"%(noise, env, agent)
+        f = open(f_out, 'w')
+        for i in range(max_length):
+            if len(stats[i]) == len(seeds) * len(maps):
+                f.write("\t".join([str((i + 1) * steps_tic / 1000)] + get_precentiles_str(stats[i])) + "\n")
+        f.close()
 
 def export_avg_results_grid_single(agent,env,maps,seeds):
     """
@@ -120,52 +122,56 @@ def export_avg_results_grid_single(agent,env,maps,seeds):
     else:
         assert False, "Invalid environment!"
 
+    for noise in range(10, 99, 10):
+        stats = [[] for _ in range(max_length)]
+        for env_map in maps:
+            for seed in seeds:
+                # Reading the results
+                f_path = "../noise_results/%s/%s/%s/%s/%s/0.0.monitor.csv"%(noise, agent, env, env_map, seed)
+                results = []
+                f = open(f_path)
+                for l in f:
+                    raw = l.strip().split(',')
+                    if len(raw) != 3 or raw[0]=='r':
+                        continue
+                    r,l,t = float(raw[0]), float(raw[1]), float(raw[2])
+                    results.append((t,l,r))
+                f.close()
 
-    stats = [[] for _ in range(max_length)]
-    for env_map in maps:
-        for seed in seeds:
-            # Reading the results
-            f_path = "../wrong_results/%s/%s/%s/%s/0.0.monitor.csv"%(agent,env,env_map,seed)
-            results = []
-            f = open(f_path)
-            for l in f:
-                raw = l.strip().split(',')
-                if len(raw) != 3 or raw[0]=='r':
-                    continue
-                r,l,t = float(raw[0]), float(raw[1]), float(raw[2])
-                results.append((t,l,r))
-            f.close()
-
-            # collecting average stats
-            steps = 0
-            rewards = deque([], maxlen=num_episodes_avg)
-            steps_tic = num_total_steps/max_length
-            for i in range(len(results)):
-                _,l,r = results[i]
-                rew_per_step = (r/l)/optimal_rewards[env_map]
-                if (steps+l)%steps_tic == 0:
-                    steps += l
-                    rewards.append(rew_per_step)
-                    stats[int((steps+l)//steps_tic)-1].append(sum(rewards)/len(rewards))
-                else:
-                    if (steps//steps_tic) != (steps+l)//steps_tic:
+                # collecting average stats
+                steps = 0
+                rewards = deque([], maxlen=num_episodes_avg)
+                steps_tic = num_total_steps/max_length
+                for i in range(len(results)):
+                    _,l,r = results[i]
+                    rew_per_step = (r/l)/optimal_rewards[env_map]
+                    if (steps+l)%steps_tic == 0:
+                        steps += l
+                        rewards.append(rew_per_step)
                         stats[int((steps+l)//steps_tic)-1].append(sum(rewards)/len(rewards))
-                    steps += l
-                    rewards.append(rew_per_step)
-                if (steps+l)//steps_tic == max_length:
-                    break
+                    else:
+                        if (steps//steps_tic) != (steps+l)//steps_tic:
+                            stats[int((steps+l)//steps_tic)-1].append(sum(rewards)/len(rewards))
+                        steps += l
+                        rewards.append(rew_per_step)
+                    if (steps+l)//steps_tic == max_length:
+                        break
 
-    # Saving the average performance and standard deviation
-    f_out = "../wrong_results/summary/%s-%s.txt"%(env,agent)
-    f = open(f_out, 'w')
-    for i in range(max_length):
-        if len(stats[i]) == len(seeds) * len(maps):
-            #f.write("\t".join([str((i+1)*steps_tic/1000), "%0.4f"%(sum(stats[i])/len(stats[i]))]) + "\n")
-            f.write("\t".join([str((i+1)*steps_tic/1000)] + get_precentiles_str(stats[i])) + "\n")
-    f.close()
+        # Saving the average performance and standard deviation
+        f_out = "../noise_results/%s/summary/%s-%s.txt"%(noise, env, agent)
+        f = open(f_out, 'w')
+        for i in range(max_length):
+            if len(stats[i]) == len(seeds) * len(maps):
+                #f.write("\t".join([str((i+1)*steps_tic/1000), "%0.4f"%(sum(stats[i])/len(stats[i]))]) + "\n")
+                f.write("\t".join([str((i+1)*steps_tic/1000)] + get_precentiles_str(stats[i])) + "\n")
+        f.close()
 
 if __name__ == '__main__':
 
+    alg = 'hrm-rs'
+    print(alg,'office')
+    export_avg_results_grid(alg,'office',['M1'],list(range(60)))
+    """
     algs = ['ql', 'crm', 'hrm', 'hrm-rs', 'ql-rs','crm-rs']
 
     # Office world (multitask)
@@ -177,15 +183,4 @@ if __name__ == '__main__':
     for alg in algs:
         print(alg,'office-single')
         export_avg_results_grid_single(alg,'office-single',['M1'],list(range(60)))
-
-    # Minecraft world (multitask)
-    """
-    for alg in algs:
-        print(alg,'craft')
-        export_avg_results_grid(alg,'craft',['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10'],list(range(6)))
-
-    # Minecraft world (single task)
-    for alg in algs:
-        print(alg,'craft-single')
-        export_avg_results_grid_single(alg,'craft-single',['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10'],list(range(6)))
     """

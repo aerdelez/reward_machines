@@ -1,52 +1,52 @@
 Logging to ../noise_results/10/hrm-rs/office/M1/21
 ---------------------------
-| episodes     | 88       |
+| episodes     | 98       |
 | steps        | 10000    |
 | total reward | 10       |
 ---------------------------
 ---------------------------
-| episodes     | 188      |
+| episodes     | 195      |
 | steps        | 20000    |
-| total reward | 24       |
+| total reward | 18       |
 ---------------------------
 ---------------------------
-| episodes     | 356      |
+| episodes     | 354      |
 | steps        | 30000    |
-| total reward | 63       |
+| total reward | 42       |
 ---------------------------
 ---------------------------
-| episodes     | 589      |
+| episodes     | 576      |
 | steps        | 40000    |
-| total reward | 98       |
+| total reward | 103      |
 ---------------------------
 ---------------------------
-| episodes     | 920      |
+| episodes     | 881      |
 | steps        | 50000    |
-| total reward | 178      |
+| total reward | 128      |
 ---------------------------
 ---------------------------
-| episodes     | 1243     |
+| episodes     | 1245     |
 | steps        | 60000    |
-| total reward | 195      |
+| total reward | 211      |
 ---------------------------
 ---------------------------
-| episodes     | 1591     |
+| episodes     | 1616     |
 | steps        | 70000    |
+| total reward | 214      |
+---------------------------
+---------------------------
+| episodes     | 1977     |
+| steps        | 80000    |
+| total reward | 207      |
+---------------------------
+---------------------------
+| episodes     | 2337     |
+| steps        | 90000    |
 | total reward | 228      |
 ---------------------------
 ---------------------------
-| episodes     | 1999     |
-| steps        | 80000    |
-| total reward | 272      |
----------------------------
----------------------------
-| episodes     | 2380     |
-| steps        | 90000    |
-| total reward | 271      |
----------------------------
----------------------------
-| episodes     | 2752     |
+| episodes     | 2713     |
 | steps        | 100000   |
-| total reward | 284      |
+| total reward | 244      |
 ---------------------------
-Total time: 17.594858169555664 seconds
+Total time: 17.337501049041748 seconds
