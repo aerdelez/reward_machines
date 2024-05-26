@@ -83,7 +83,7 @@ def make_env(env_id, env_type, args, mpi_rank=0, subrank=0, seed=None, reward_sc
     if args.use_rs or args.use_crm:
         env = RewardMachineWrapper(env, args.use_crm, args.use_rs, args.gamma, args.rs_gamma, args.alg)
 
-    # TODO: look into this
+    # TODO: look into this, probably redundant
     if flatten_dict_observations and isinstance(env.observation_space, gym.spaces.Dict):
         env = FlattenObservation(env)
 

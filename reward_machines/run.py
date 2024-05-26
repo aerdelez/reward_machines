@@ -131,6 +131,8 @@ def build_env(args, main_logger=None):
 
     if alg in ['deepq', 'qlearning', 'hrm', 'dhrm']:
         env = make_env(env_id, env_type, args, seed=seed, logger_dir=main_logger.get_dir())
+    
+    # TODO: redundant
     else:
         config = tf.ConfigProto(allow_soft_placement=True,
                                intra_op_parallelism_threads=1,
