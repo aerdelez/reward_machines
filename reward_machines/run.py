@@ -267,6 +267,8 @@ def main(args):
     # Train the model
     model, env = train(args, extra_args, main_logger)
 
+    env.show()
+
     # Save results to a given path
     if args.save_path is not None and rank == 0:
         save_path = osp.expanduser(args.save_path)

@@ -47,6 +47,19 @@ register(
     max_episode_steps=1000
 )
 
+# ----------------------------------------- MORDOR
+register(
+    id='Mordor-v0',
+    entry_point='envs.grids.grid_environment:MordorRMEnv',
+    max_episode_steps=1000
+)
+
+register(
+    id='Mordor-single-v0',
+    entry_point='envs.grids.grid_environment:MordorRM3Env',
+    max_episode_steps=1000
+)
+
 # ----------------------------------------- CRAFT
 for i in range(11):
     w_id = 'Craft-M%d-v0'%i

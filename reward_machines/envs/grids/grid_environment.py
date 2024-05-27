@@ -4,6 +4,7 @@ import numpy as np
 from reward_machines.rm_environment import RewardMachineEnv
 from envs.grids.craft_world import CraftWorld
 from envs.grids.office_world import OfficeWorld
+from envs.grids.mordor_world import MordorWorld
 from envs.grids.value_iteration import value_iteration
 
 class GridEnv(gym.Env):
@@ -114,6 +115,7 @@ class GridRMEnv(RewardMachineEnv):
 
         return [sum(arps)/len(arps) for arps in optimal_ARPS]
 
+# OFFICE WORLD
 
 class OfficeRMEnv(GridRMEnv):
     def __init__(self):
@@ -126,6 +128,22 @@ class OfficeRM3Env(GridRMEnv):
         rm_files = ["./envs/grids/reward_machines/office/t3.txt"]
         env = OfficeWorld()
         super().__init__(GridEnv(env),rm_files)
+
+# MORDOR WORLD
+
+class MordorRMEnv(GridRMEnv):
+    def __init__(self):
+        rm_files = ["./envs/grids/reward_machines/mordor/t%d.txt"%i for i in range(1,3)]
+        env = MordorWorld()
+        super().__init__(GridEnv(env),rm_files)
+
+class MordorRM3Env(GridRMEnv):
+    def __init__(self):
+        rm_files = ["./envs/grids/reward_machines/mordor/t2.txt"]
+        env = MordorWorld()
+        super().__init__(GridEnv(env),rm_files)
+
+# CRAFT WORLD
 
 class CraftRMEnv(GridRMEnv):
     def __init__(self, file_map):
