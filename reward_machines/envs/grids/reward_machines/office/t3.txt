@@ -1,5 +1,5 @@
 0 # initial state
-[1,5] # terminal state
+[1] # terminal state
 (0,0,'!e&!f&!n',ConstantRewardFunction(0))
 (0,2,'e&!n',ConstantRewardFunction(0))
 (0,3,'!e&f&!n',ConstantRewardFunction(0))
@@ -9,7 +9,3 @@
 (3,4,'e&!n',ConstantRewardFunction(0))
 (4,1,'g&!n',ConstantRewardFunction(1))
 (4,4,'!g&!n',ConstantRewardFunction(0))
-(0,5,'n',ConstantRewardFunction(-10))
-(4,5,'n',ConstantRewardFunction(-10))
-(2,5,'n',ConstantRewardFunction(-10))
-(3,5,'n',ConstantRewardFunction(-10))
