@@ -111,7 +111,6 @@ class MordorWorld:
         self.objects[(4,3)] = "v"  # VOLCANO
         self.objects[(10,0)] = "s" # SAM
         self.objects[(7,5)] = "r"  # RING
-        self.objects[(8,6)] = "g"  # GOLLUM
         self.objects[(4,0)] = "o"  # ORC
         self.objects[(8,0)] = "o"  # ORC
         self.objects[(6,1)] = "o"  # ORC

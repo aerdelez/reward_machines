@@ -28,4 +28,4 @@
 (10,10,'!v&!o',ConstantRewardFunction(0))
 (10,11,'v&!o',ConstantRewardFunction(0))
 (11,11,'!e&!o',ConstantRewardFunction(0))
-(11,12,'e&!o',ConstantRewardFunction(0))
+(11,12,'e&!o',ConstantRewardFunction(1))

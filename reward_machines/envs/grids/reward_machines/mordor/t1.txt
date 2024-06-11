@@ -1,8 +1,8 @@
 0 # initial state
 [3] # terminal state
-(0,0,'!r&!g&!o',ConstantRewardFunction(0))
-(0,1,'r&!g&!o',ConstantRewardFunction(0))
-(1,1,'!v&!g&!o',ConstantRewardFunction(0))
-(1,2,'v&!g&!o',ConstantRewardFunction(0))
-(2,2,'!e&!g&!o',ConstantRewardFunction(0))
-(2,3,'e&!g&!o',ConstantRewardFunction(1))
+(0,0,'!r&!o',ConstantRewardFunction(0))
+(0,1,'r&!o',ConstantRewardFunction(0))
+(1,1,'!v&!o',ConstantRewardFunction(0))
+(1,2,'v&!o',ConstantRewardFunction(0))
+(2,2,'!e&!o',ConstantRewardFunction(0))
+(2,3,'e&!o',ConstantRewardFunction(1))

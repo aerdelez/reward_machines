@@ -1,52 +1,41 @@
 Logging to ../negative_reward_results/ql/office/M1/0
 ---------------------------
-| episodes     | 195      |
+| episodes     | 182      |
 | steps        | 10000    |
-| total reward | 17.2     |
+| total reward | 19       |
 ---------------------------
 ---------------------------
-| episodes     | 305      |
+| episodes     | 311      |
 | steps        | 20000    |
-| total reward | 26.2     |
+| total reward | 32       |
 ---------------------------
 ---------------------------
-| episodes     | 396      |
+| episodes     | 385      |
 | steps        | 30000    |
-| total reward | 26.4     |
+| total reward | 24       |
 ---------------------------
 ---------------------------
-| episodes     | 491      |
+| episodes     | 487      |
 | steps        | 40000    |
-| total reward | 23.3     |
+| total reward | 33       |
 ---------------------------
 ---------------------------
-| episodes     | 584      |
+| episodes     | 588      |
 | steps        | 50000    |
-| total reward | 25.3     |
+| total reward | 35       |
 ---------------------------
 ---------------------------
-| episodes     | 681      |
+| episodes     | 682      |
 | steps        | 60000    |
-| total reward | 25.3     |
+| total reward | 39       |
 ---------------------------
 ---------------------------
-| episodes     | 801      |
+| episodes     | 796      |
 | steps        | 70000    |
-| total reward | 41.2     |
+| total reward | 50       |
 ---------------------------
 ---------------------------
 | episodes     | 897      |
 | steps        | 80000    |
-| total reward | 29.3     |
+| total reward | 53       |
 ---------------------------
----------------------------
-| episodes     | 1022     |
-| steps        | 90000    |
-| total reward | 44.2     |
----------------------------
----------------------------
-| episodes     | 1135     |
-| steps        | 100000   |
-| total reward | 37.3     |
----------------------------
-Total time: 0.9557771682739258 seconds

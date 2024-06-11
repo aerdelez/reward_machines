@@ -133,13 +133,13 @@ class OfficeRM3Env(GridRMEnv):
 
 class MordorRMEnv(GridRMEnv):
     def __init__(self):
-        rm_files = ["./envs/grids/reward_machines/mordor/t%d.txt"%i for i in range(1,3)]
+        rm_files = ["./envs/grids/reward_machines/mordor/t%d.txt"%i for i in range(1,4)]
         env = MordorWorld()
         super().__init__(GridEnv(env),rm_files)
 
 class MordorRM3Env(GridRMEnv):
     def __init__(self):
-        rm_files = ["./envs/grids/reward_machines/mordor/t2.txt"]
+        rm_files = ["./envs/grids/reward_machines/mordor/t3.txt"]
         env = MordorWorld()
         super().__init__(GridEnv(env),rm_files)
 

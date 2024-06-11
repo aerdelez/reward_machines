@@ -43,6 +43,12 @@ def export_avg_results_noise(agent,env,maps,seeds):
             M9=[0.04065716304804992, 0.028279235440572967, 0.03787076165651398, 0.0497159731275612, 0.02381682895885013, 0.02049120604804244, 0.016923128041790636, 0.028248394849629, 0.017381356260630407, 0.01058547554394297],
             M10=[0.027431983274420882, 0.06260777145288554, 0.034241716927835716, 0.05593015110915622, 0.02474730823989501, 0.0187448744296349, 0.019920828933960858, 0.03675192807314101, 0.014629262051232932, 0.015968906266383056]
             )        
+    elif 'mordor' in env:
+        num_episodes_avg = 400
+        num_total_steps = 1e5
+        max_length = 100 
+        # These values were computed using python3 test_optimal_policies.py --env Mordor-v0
+        optimal_rewards = dict(M1=[0.04604733289236299, 0.035616140640174015, 0.021978386660349278])
     else:
         assert False, "Invalid environment!"
 
@@ -55,7 +61,7 @@ def export_avg_results_noise(agent,env,maps,seeds):
             # Loop 60 times
             for seed in seeds:
                 # Reading the results -> format: list of [time, episode length, episode reward]
-                f_path = "../noise_results/%s/%s/%s/%s/%s/0.0.monitor.csv"%(noise, agent, env, env_map, seed)
+                f_path = "../mordor_noise_results/%s/%s/%s/%s/%s/0.0.monitor.csv"%(noise, agent, env, env_map, seed)
                 results = []
                 f = open(f_path)
                 for l in f:
@@ -91,7 +97,7 @@ def export_avg_results_noise(agent,env,maps,seeds):
                         break
 
         # Saving the average performance and standard deviation
-        f_out = "../noise_results/%s/summary/%s-%s.txt"%(noise, env, agent)
+        f_out = "../mordor_noise_results/%s/summary/%s-%s.txt"%(noise, env, agent)
         f = open(f_out, 'w')
         for i in range(max_length):
             if len(stats[i]) == len(seeds) * len(maps):
@@ -116,7 +122,13 @@ def export_avg_results_noise_single(agent,env,maps,seeds):
         num_total_steps = 2e6
         max_length = 200 
         # These values were computed using python3 test_optimal_policies.py --env Craft-Mx-v0, where Mx \in {M0,...,M10}
-        optimal_rewards = dict(M0=0.012990580561337057, M1=0.01608448909869953, M2=0.016267593882624505, M3=0.015542177173904392, M4=0.015153066220061151, M5=0.01425830298231041, M6=0.017646578127461003, M7=0.01436104192390331, M8=0.010353648029998358, M9=0.01058547554394297, M10=0.015968906266383056)        
+        optimal_rewards = dict(M0=0.012990580561337057, M1=0.01608448909869953, M2=0.016267593882624505, M3=0.015542177173904392, M4=0.015153066220061151, M5=0.01425830298231041, M6=0.017646578127461003, M7=0.01436104192390331, M8=0.010353648029998358, M9=0.01058547554394297, M10=0.015968906266383056)
+    elif 'mordor' in env:
+        num_episodes_avg = 400
+        num_total_steps = 1e5
+        max_length = 100 
+        # These values were computed using python3 test_optimal_policies.py --env Mordor-v0
+        optimal_rewards = dict(M1=0.021978386660349278)       
     else:
         assert False, "Invalid environment!"
 
@@ -125,7 +137,7 @@ def export_avg_results_noise_single(agent,env,maps,seeds):
         for env_map in maps:
             for seed in seeds:
                 # Reading the results
-                f_path = "../noise_results/%s/%s/%s/%s/%s/0.0.monitor.csv"%(noise, agent, env, env_map, seed)
+                f_path = "../mordor_noise_results/%s/%s/%s/%s/%s/0.0.monitor.csv"%(noise, agent, env, env_map, seed)
                 results = []
                 f = open(f_path)
                 for l in f:
@@ -156,7 +168,7 @@ def export_avg_results_noise_single(agent,env,maps,seeds):
                         break
 
         # Saving the average performance and standard deviation
-        f_out = "../noise_results/%s/summary/%s-%s.txt"%(noise, env, agent)
+        f_out = "../mordor_noise_results/%s/summary/%s-%s.txt"%(noise, env, agent)
         f = open(f_out, 'w')
         for i in range(max_length):
             if len(stats[i]) == len(seeds) * len(maps):
@@ -195,6 +207,12 @@ def export_avg_results_grid(agent,env,maps,seeds):
             M9=[0.04065716304804992, 0.028279235440572967, 0.03787076165651398, 0.0497159731275612, 0.02381682895885013, 0.02049120604804244, 0.016923128041790636, 0.028248394849629, 0.017381356260630407, 0.01058547554394297],
             M10=[0.027431983274420882, 0.06260777145288554, 0.034241716927835716, 0.05593015110915622, 0.02474730823989501, 0.0187448744296349, 0.019920828933960858, 0.03675192807314101, 0.014629262051232932, 0.015968906266383056]
             )        
+    elif 'mordor' in env:
+        num_episodes_avg = 400
+        num_total_steps = 1e5
+        max_length = 100 
+        # These values were computed using python3 test_optimal_policies.py --env Mordor-v0
+        optimal_rewards = dict(M1=[0.04604733289236299, 0.035616140640174015, 0.021978386660349278])
     else:
         assert False, "Invalid environment!"
 
@@ -203,7 +221,7 @@ def export_avg_results_grid(agent,env,maps,seeds):
     for env_map in maps:
         for seed in seeds:
             # Reading the results
-            f_path = "../negative_reward_results/%s/%s/%s/%s/0.0.monitor.csv"%(agent,env,env_map,seed)
+            f_path = "../mordor_results/%s/%s/%s/%s/0.0.monitor.csv"%(agent,env,env_map,seed)
             results = []
             f = open(f_path)
             for l in f:
@@ -234,7 +252,7 @@ def export_avg_results_grid(agent,env,maps,seeds):
                     break
 
     # Saving the average performance and standard deviation
-    f_out = "../negative_reward_results/summary/%s-%s.txt"%(env,agent)
+    f_out = "../mordor_results/summary/%s-%s.txt"%(env,agent)
     f = open(f_out, 'w')
     for i in range(max_length):
         if len(stats[i]) == len(seeds) * len(maps):
@@ -262,6 +280,12 @@ def export_avg_results_grid_single(agent,env,maps,seeds):
         max_length = 200 
         # These values were computed using python3 test_optimal_policies.py --env Craft-Mx-v0, where Mx \in {M0,...,M10}
         optimal_rewards = dict(M0=0.012990580561337057, M1=0.01608448909869953, M2=0.016267593882624505, M3=0.015542177173904392, M4=0.015153066220061151, M5=0.01425830298231041, M6=0.017646578127461003, M7=0.01436104192390331, M8=0.010353648029998358, M9=0.01058547554394297, M10=0.015968906266383056)        
+    elif 'mordor' in env:
+        num_episodes_avg = 100
+        num_total_steps = 1e5
+        max_length = 100 
+        # These values were computed using python3 test_optimal_policies.py --env Mordor-v0
+        optimal_rewards = dict(M1=0.021978386660349278)
     else:
         assert False, "Invalid environment!"
 
@@ -270,7 +294,7 @@ def export_avg_results_grid_single(agent,env,maps,seeds):
     for env_map in maps:
         for seed in seeds:
             # Reading the results
-            f_path = "../negative_reward_results/%s/%s/%s/%s/0.0.monitor.csv"%(agent,env,env_map,seed)
+            f_path = "../mordor_results/%s/%s/%s/%s/0.0.monitor.csv"%(agent,env,env_map,seed)
             results = []
             f = open(f_path)
             for l in f:
@@ -301,7 +325,7 @@ def export_avg_results_grid_single(agent,env,maps,seeds):
                     break
 
     # Saving the average performance and standard deviation
-    f_out = "../negative_reward_results/summary/%s-%s.txt"%(env,agent)
+    f_out = "../mordor_results/summary/%s-%s.txt"%(env,agent)
     f = open(f_out, 'w')
     for i in range(max_length):
         if len(stats[i]) == len(seeds) * len(maps):
@@ -314,10 +338,10 @@ if __name__ == '__main__':
 
     # Office world (multitask)
     for alg in algs:
-        print(alg,'office')
-        export_avg_results_grid(alg,'office',['M1'],list(range(60)))
+        print(alg,'mordor')
+        export_avg_results_noise(alg,'mordor',['M1'],list(range(60)))
 
     # Office world (single task)
     for alg in algs:
-        print(alg,'office-single')
-        export_avg_results_grid_single(alg,'office-single',['M1'],list(range(60)))
+        print(alg,'mordor-single')
+        export_avg_results_noise_single(alg,'mordor-single',['M1'],list(range(60)))
