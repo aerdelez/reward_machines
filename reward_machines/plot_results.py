@@ -10,7 +10,6 @@ for noise in range(10, 99, 10):
     for environment in environments:
         for algorithm in algorithms:
             # Read the table
-            #df = pd.read_csv(f'../noise_results/{noise}/summary/{environment}-{algorithm}.txt', delimiter='\t',
             df = pd.read_csv(f'../mordor_noise_results/{noise}/summary/{environment}-{algorithm}.txt', delimiter='\t', 
                              names=['timestep', '25th', 'median', '75th'])
 
@@ -22,7 +21,6 @@ for noise in range(10, 99, 10):
 
 
         # Add labels, ticks and legend
-        #plt.title(f'{environment} with {noise}% noise')
         plt.title(f'{environment} with {noise}% noise')
         plt.xlabel('Training steps (in thousands)')
         plt.ylabel('Avg. reward per step')
@@ -33,7 +31,6 @@ for noise in range(10, 99, 10):
         plt.legend()
 
         # Save plot
-        #plt.savefig(f'../noise_results/{noise}/plots/{environment}.png')
         plt.savefig(f'../mordor_noise_results/{noise}/plots/{environment}.png')
         
         # Show plot
