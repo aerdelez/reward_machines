@@ -86,14 +86,14 @@ class RewardMachineEnv(gym.Wrapper):
 
         # Change event detectors for Office-grid environment
         # ENTER NOISE PROBABILITY USING ONE ELEMENT FROM THIS LIST: [10,20,30,40,50,60,70,80,90, 100]
-        no_noise_probability = 10
+        noise_probability = 10
 
-        if "Office" in str(self.env) and random.randint(0, 99) >= no_noise_probability:
+        if "Office" in str(self.env) and random.randint(0, 99) < noise_probability:
             if true_props is not "":
                 # Random selection
                 possible_props = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'n']
                 true_props = possible_props[random.randint(0, len(possible_props) - 1)]
-        elif "Mordor" in str(self.env) and random.randint(0, 99) >= no_noise_probability:
+        elif "Mordor" in str(self.env) and random.randint(0, 99) < noise_probability:
             if true_props is not "":
                 # Random selection
                 possible_props = ['e', 'k', 'v', 's', 'r', 'o']
