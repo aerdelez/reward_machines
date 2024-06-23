@@ -14,7 +14,7 @@ for noise in range(10, 99, 10):
                              names=['timestep', '25th', 'median', '75th'])
 
             # Plot median reward as a line
-            plt.plot(df['timestep'], df['median'], label=f'{algorithm}')
+            plt.plot(df['timestep'], df['median'], label=f'{algorithm.upper()}')
 
             # Plot shaded area between 25th and 75th percentile rewards
             plt.fill_between(df['timestep'], df['25th'], df['75th'], alpha=0.3)
