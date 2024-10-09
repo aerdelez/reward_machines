@@ -20,7 +20,6 @@ from baselines_functionality.wrappers import ClipActionsWrapper
 
 from reward_machines.rm_environment import RewardMachineWrapper, HierarchicalRMWrapper
 
-# TODO: probably not used
 def make_vec_env(env_id, env_type, num_env, seed, args, 
                  wrapper_kwargs=None,
                  env_kwargs=None,
@@ -83,17 +82,14 @@ def make_env(env_id, env_type, args, mpi_rank=0, subrank=0, seed=None, reward_sc
     if args.use_rs or args.use_crm:
         env = RewardMachineWrapper(env, args.use_crm, args.use_rs, args.gamma, args.rs_gamma, args.alg)
 
-    # TODO: look into this, probably redundant
     if flatten_dict_observations and isinstance(env.observation_space, gym.spaces.Dict):
         env = FlattenObservation(env)
 
-    # possible TODO: seed=seed + subrank if seed is not None else None as function argument
     env.reset()
     env = Monitor(env,
                   logger_dir and os.path.join(logger_dir, str(mpi_rank) + '.' + str(subrank)),
                   allow_early_resets=True)
 
-    # TODO: for continuous spaces I believe so I should remove it
     if isinstance(env.action_space, gym.spaces.Box):
         env = ClipActionsWrapper(env)
 

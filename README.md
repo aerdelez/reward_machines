@@ -1,6 +1,6 @@
 # reward_machines
 
-This repository contains a script to generate noise plots for various algorithms. It reads data from predefined files, processes the data to compute the median, 25th percentile, and 75th percentile, and then plots the results.
+This repository contains a script to generate noise plots for various algorithms. It reads data from predefined files, processes the data to compute the median, 25th percentile, and 75th percentile, and then plots the results. This code is an extended and modernized version of the original reward machine system designed by Icarte et al. (https://github.com/RodrigoToroIcarte/reward_machines).
 
 ## Dependencies
 

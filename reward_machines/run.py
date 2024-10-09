@@ -34,7 +34,6 @@ roboschool = None
 
 _game_envs = defaultdict(set)
 for _, env in gym.envs.registry.items():
-    # TODO: solve this with regexes
     env_type = env.entry_point.split(':')[0].split('.')[-1]
     _game_envs[env_type].add(env.id)
 
@@ -53,7 +52,6 @@ _game_envs['retro'] = {
 }
 
 
-# TODO: Probably not needed
 def get_session(config=None):
     """Get default session or create one with a given config"""
     sess = tf.get_default_session()
@@ -61,7 +59,7 @@ def get_session(config=None):
         sess = make_session(config=config, make_default=True)
     return sess
 
-# TODO: Not needed if get_session not needed
+
 def make_session(config=None, num_cpu=None, make_default=False, graph=None):
     """Returns a session that will use <num_cpu> CPU's only"""
     if num_cpu is None:
@@ -92,7 +90,6 @@ def train(args, extra_args, main_logger=None):
     alg_kwargs.update(extra_args)
 
     env = build_env(args, main_logger)
-    # TODO: No video in my experiment so deprecated
     if args.save_video_interval != 0:
         env = VecVideoRecorder(env, osp.join(main_logger.get_dir(), "videos"), record_video_trigger=lambda x: x % args.save_video_interval == 0, video_length=args.save_video_length)
 
@@ -132,7 +129,6 @@ def build_env(args, main_logger=None):
     if alg in ['deepq', 'qlearning', 'hrm', 'dhrm']:
         env = make_env(env_id, env_type, args, seed=seed, logger_dir=main_logger.get_dir())
     
-    # TODO: redundant
     else:
         config = tf.ConfigProto(allow_soft_placement=True,
                                intra_op_parallelism_threads=1,
@@ -176,7 +172,6 @@ def get_env_type(args):
     return env_type, env_id
 
 
-# TODO: if network not used, remove it
 def get_default_network(env_type):
     if env_type in {'atari', 'retro'}:
         return 'cnn'
@@ -200,7 +195,6 @@ def get_learn_function_defaults(alg, env_type):
     try:
         alg_defaults = get_alg_module(alg, 'defaults')
         kwargs = getattr(alg_defaults, env_type)()
-    # except probably not ever used
     except (ImportError, AttributeError):
         kwargs = {}
     return kwargs
@@ -274,7 +268,6 @@ def main(args):
         save_path = osp.expanduser(args.save_path)
         model.save(save_path)
 
-    # TODO: probably useless for the project
     if args.play:
         main_logger.log("Running trained model")
         obs = env.reset()

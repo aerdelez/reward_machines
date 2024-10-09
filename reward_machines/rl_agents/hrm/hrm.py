@@ -65,7 +65,7 @@ def learn(env,
     num_episodes = 0
     reward_total = 0
     actions      = list(range(env.action_space.n))
-    Q_controller = {}   # Q-values for the meta-controller TODO: probably don't need it
+    Q_controller = {}   # Q-values for the meta-controller
     Q_options    = {}   # Q-values for the option policies
     option_s     = None # State where the option initiated
     option_id    = None # Id of the current option being executed
